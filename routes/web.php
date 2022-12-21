@@ -32,10 +32,21 @@ Route::get('/ascensao', function() {
     return view('ascensao.index');
 });
 
-Route::get('/ascensao/formulario', function() {
-    return 'Formulário de inicio';
+Route::get('/ascensao/create-dados-gerais', function() {
+    return 'Formulário 1';
 });
 
-// Route::post('', );
+Route::post('/ascensao/create-dados-gerais', function() {
+    return 'Formulário 1';
+});
+
+Route::get('/ascensao/create-dados-funcionais', function() {
+    return 'Formulário 2';
+});
+
+Route::post('/ascensao/create-dados-funcionais', function() {
+    return 'Formulário 2';
+});
+
 
 require __DIR__.'/auth.php';
