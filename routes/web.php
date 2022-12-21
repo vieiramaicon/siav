@@ -30,23 +30,23 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/ascensao', function() {
     return view('ascensao.index');
-});
+})->name('ascensao.index');
 
 Route::get('/ascensao/create-dados-gerais', function() {
-    return 'Formulário 1';
-});
+    return view('ascensao.create-dados-gerais');
+})->name('ascensao');
 
 Route::post('/ascensao/create-dados-gerais', function() {
     return 'Formulário 1';
-});
+})->name('ascensao');
 
 Route::get('/ascensao/create-dados-funcionais', function() {
     return 'Formulário 2';
-});
+})->name('ascensao');
 
 Route::post('/ascensao/create-dados-funcionais', function() {
     return 'Formulário 2';
-});
+})->name('ascensao');
 
 
 require __DIR__.'/auth.php';
