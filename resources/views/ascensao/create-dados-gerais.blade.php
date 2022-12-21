@@ -1,4 +1,4 @@
-<form action="" method="post">
+<form action="/ascensao/create-dados-gerais" method="post">
     @csrf
     <div>
         <label for="nome">Nome</label>
@@ -18,4 +18,5 @@
         <input type="text" id="nome" name ="nome">
     </div>
     
+    <button type="submit"></button>
 </form>
