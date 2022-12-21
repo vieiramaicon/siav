@@ -28,25 +28,40 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//Solicitar ascensão
+//Index
 Route::get('/ascensao', function() {
     return view('ascensao.index');
 })->name('ascensao.index');
 
+//Formulário de dados gerais (etapa 1)
 Route::get('/ascensao/create-dados-gerais', function() {
     return view('ascensao.create-dados-gerais');
-})->name('ascensao');
+})->name('ascensao.create.dados.gerais');
 
 Route::post('/ascensao/create-dados-gerais', function() {
-    return 'Formulário 1';
-})->name('ascensao');
+    return to_route('ascensao.create.dados.residenciais');
+})->name('ascensao.create.dados.gerais');
 
+// Formulário de dados residencias (etapa 2)
+Route::get('/ascensao/create-dados-residencias', function() {
+    return view('ascensao.create-dados-residencias');
+})->name('ascensao.create.dados.residenciais');
+
+Route::post('/ascensao/create-dados-residencias', function() {
+    return to_route('ascensao.create.dados.funcionais');
+})->name('ascensao.create.dados.residenciais');
+
+//Formulário de dados funcionais (etapa 3)
 Route::get('/ascensao/create-dados-funcionais', function() {
-    return 'Formulário 2';
-})->name('ascensao');
+    return view('ascensao.create-dados-funcionais');
+})->name('ascensao.create.dados.funcionais');
 
 Route::post('/ascensao/create-dados-funcionais', function() {
-    return 'Formulário 2';
-})->name('ascensao');
+    return 'Finalizou';
+})->name('ascensao.create.dados.funcionais');
+
+//Formulário de curos (etapa 4)
 
 
 require __DIR__.'/auth.php';
