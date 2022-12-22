@@ -7,6 +7,7 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Enums\TipoPerfil;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -28,12 +29,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::before(fn () => Auth::user()->isAdmin() ? true : null);
+        Gate::before(fn () => Auth::user()->hasPerfil(TipoPerfil::Admin) ? true : null);
 
-        Gate::define('servidor', fn() => Auth::user()->isServidor());
+        Gate::define('servidor', fn() => Auth::user()->hasPerfil(TipoPerfil::Servidor));
 
-        Gate::define('protocolo',  fn() => Auth::user()->isProtocolo());
+        Gate::define('protocolo',  fn() => Auth::user()->hasPerfil(TipoPerfil::Protocolo));
 
-        Gate::define('copad',  fn() => Auth::user()->isCopad());
+        Gate::define('copad',  fn() => Auth::user()->hasPerfil(TipoPerfil::Copad));
     }
 }
