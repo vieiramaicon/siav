@@ -90,12 +90,12 @@ class User extends Authenticatable
                     ->exists();
     }
 
-    public function hasPerfil($nome) {
+    public function hasPerfil($tipoPerfil) {
         return DB::table('users')
                     ->join('perfil_user', 'users.id', '=' , 'perfil_user.user_id')
                     ->join('perfis', 'perfis.id', '=', 'perfil_user.perfil_id')
                     ->where('users.id', '=', Auth::id())
-                    ->where('perfis.nome', '=', $nome)
+                    ->where('perfis.cod', '=', $tipoPerfil->value)
                     ->exists();
 
     }
