@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,34 +35,32 @@ Route::get('/ascensao', function() {
     return view('ascensao.index');
 })->name('ascensao.index');
 
-//Formulário de dados gerais (etapa 1)
-Route::get('/ascensao/create-dados-gerais', function() {
-    return view('ascensao.create-dados-gerais');
-})->name('ascensao.create.dados.gerais');
+//Formulário (etapa 1)
+Route::get('/ascensao/criar-primeiro-passo', function() {
+    return view('ascensao.criar-primeiro-passo');
+})->name('ascensao.criar.primeiro.passo');
 
-Route::post('/ascensao/create-dados-gerais', function() {
-    return to_route('ascensao.create.dados.residenciais');
-})->name('ascensao.create.dados.gerais');
+Route::post('/ascensao/criar-primeiro-passo', function(Request $request) {
+    return to_route('ascensao.criar.segundo.passo');
+})->name('ascensao.criar.primeiro.passo.post');
 
-// Formulário de dados residencias (etapa 2)
-Route::get('/ascensao/create-dados-residencias', function() {
-    return view('ascensao.create-dados-residencias');
-})->name('ascensao.create.dados.residenciais');
+// Formulário (etapa 2)
+Route::get('/ascensao/criar-segundo-passo', function() {
+    return view('ascensao.criar-segundo-passo');
+})->name('ascensao.criar.segundo.passo');
 
-Route::post('/ascensao/create-dados-residencias', function() {
-    return to_route('ascensao.create.dados.funcionais');
-})->name('ascensao.create.dados.residenciais');
+Route::post('/ascensao/criar-segundo-passo', function() {
+    return to_route('ascensao.criar.terceiro.passo');
+})->name('ascensao.criar.segundo.passo.post');
 
-//Formulário de dados funcionais (etapa 3)
-Route::get('/ascensao/create-dados-funcionais', function() {
-    return view('ascensao.create-dados-funcionais');
-})->name('ascensao.create.dados.funcionais');
+//Formulário (etapa 3)
+Route::get('/ascensao/criar-terceiro-passo', function() {
+    return view('ascensao.criar-terceiro-passo');
+})->name('ascensao.criar.terceiro.passo');
 
-Route::post('/ascensao/create-dados-funcionais', function() {
+Route::post('/ascensao/criar-terceiro-passo', function() {
     return 'Finalizou';
-})->name('ascensao.create.dados.funcionais');
-
-//Formulário de curos (etapa 4)
+})->name('ascensao.criar.terceiro.passo.post');
 
 
 require __DIR__.'/auth.php';
