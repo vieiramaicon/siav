@@ -15,10 +15,10 @@ class PerfilSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('perfis')->insert(['nome' => 'user', 'cod' => 'pf01']);
-        DB::table('perfis')->insert(['nome' => 'servidor', 'cod' => 'pf02']);
-        DB::table('perfis')->insert(['nome' => 'protocolo', 'cod' => 'pf03']);
-        DB::table('perfis')->insert(['nome' => 'copad', 'cod' => 'pf04']);
-        DB::table('perfis')->insert(['nome' => 'admin', 'cod' => 'pf05']);
+        DB::table('perfis')->insert(['nome' => 'User', 'cod' => 'pf01']);
+        DB::table('perfis')->insert(['nome' => 'Servidor', 'cod' => 'pf02']);
+        DB::table('perfis')->insert(['nome' => 'Protocolo', 'cod' => 'pf03']);
+        DB::table('perfis')->insert(['nome' => 'Copad', 'cod' => 'pf04']);
+        DB::table('perfis')->insert(['nome' => 'Admin', 'cod' => 'pf05']);
     }
 }

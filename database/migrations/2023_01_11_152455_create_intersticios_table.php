@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ascensoes', function (Blueprint $table) {
+        Schema::create('intersticios', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('telefone', 11)->nullable();
-            $table->string('numero_processo', 12)->nullable();
+            $table->smallInteger('ano')->unique();
+            $table->date('intersticio_inicio');
+            $table->date('intersticio_fim');
+            $table->date('periodo_inicio');
+            $table->date('periodo_fim');
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ascensoes');
+        Schema::dropIfExists('intersticios');
     }
 };

@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('processos', function (Blueprint $table) {
+        Schema::create('status_ascensoes', function (Blueprint $table) {
             $table->id();
-            $table->string('numero');
+            $table->string('codigo', 4);
+            $table->string('nome');
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('processos');
+        Schema::dropIfExists('status_ascensoes');
     }
 };
