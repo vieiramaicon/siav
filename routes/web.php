@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\AscensaoController;
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
-use App\Models\Ascensao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -33,47 +33,22 @@ Route::middleware('auth')->group(function () {
 
 //Solicitar ascensão
 //Index
-Route::get('/ascensao', function() {
-    return view('ascensao.index');
-})->name('ascensao.index');
+Route::get('/ascensao', [AscensaoController::class, 'index'])->name('ascensao.index');
 
 //Formulário (etapa 1)
-Route::get('/ascensao/criar-primeiro-passo', function(Request $request) {
-    $id = DB::table('ascensoes')->insert([]);
+Route::get('/ascensao/criar-primeiro-passo', [AscensaoController::class, 'criarPrimeiroPasso'])->name('ascensao.criar.primeiro.passo');
 
-    $ascensao = new Ascensao();
-    $ascensao->save();
-
-    session(['id' => $ascensao->id]);
-
-    return view('ascensao.criar-primeiro-passo');
-})->name('ascensao.criar.primeiro.passo');
-
-Route::post('/ascensao/criar-primeiro-passo', function(Request $request) {
-    $id = session('id');
-    //dd($id);
-    return to_route('ascensao.criar.segundo.passo');
-})->name('ascensao.criar.primeiro.passo.post');
+Route::post('/ascensao/criar-primeiro-passo', [AscensaoController::class, 'criarPrimeiroPassoPost'])->name('ascensao.criar.primeiro.passo.post');
 
 // Formulário (etapa 2)
-Route::get('/ascensao/criar-segundo-passo', function(Request $request) {
-    return view('ascensao.criar-segundo-passo');
-})->name('ascensao.criar.segundo.passo');
+Route::get('/ascensao/criar-segundo-passo', [AscensaoController::class, 'criarSegundoPasso'])->name('ascensao.criar.segundo.passo');
 
-Route::post('/ascensao/criar-segundo-passo', function(Request $request) {
-    return to_route('ascensao.criar.terceiro.passo');
-})->name('ascensao.criar.segundo.passo.post');
+Route::post('/ascensao/criar-segundo-passo', [AscensaoController::class, 'criarSegundoPassoPost'])->name('ascensao.criar.segundo.passo.post');
 
 //Formulário (etapa 3)
-Route::get('/ascensao/criar-terceiro-passo', function(Request $request) {
-    return view('ascensao.criar-terceiro-passo');
-})->name('ascensao.criar.terceiro.passo');
+Route::get('/ascensao/criar-terceiro-passo', [AscensaoController::class, 'criarTerceiroPasso'])->name('ascensao.criar.terceiro.passo');
 
-Route::post('/ascensao/criar-terceiro-passo', function(Request $request) {
-    $id = session('id');
-    dd($id);
-    return 'Finalizou';
-})->name('ascensao.criar.terceiro.passo.post');
+Route::post('/ascensao/criar-terceiro-passo', [AscensaoController::class, 'criarTerceiroPassoPost'])->name('ascensao.criar.terceiro.passo.post');
 
 
 require __DIR__.'/auth.php';

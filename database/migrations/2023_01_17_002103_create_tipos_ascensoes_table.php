@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ascensoes', function (Blueprint $table) {
+        Schema::create('tipos_ascensoes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('telefone', 11)->nullable();
-            // $table->foreignId('tipo_ascensao_id')->constrained('tipos_ascensoes')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('numero_processo', 12)->nullable();
+            $table->string('codigo', 5);
+            $table->string('nome');
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ascensoes');
+        Schema::dropIfExists('tipo_ascensao');
     }
 };
