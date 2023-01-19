@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tipos_ascensoes', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 5);
+            $table->string('codigo', 5)->unique();
             $table->string('nome');
         });
     }

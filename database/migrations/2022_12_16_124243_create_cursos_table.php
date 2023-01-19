@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('ascensao_id')->nullable()->constrained('ascensoes')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('nome');
             $table->string('area');
             $table->string('carga_horaria');

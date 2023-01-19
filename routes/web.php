@@ -33,22 +33,29 @@ Route::middleware('auth')->group(function () {
 
 //Solicitar ascensão
 //Index
-Route::get('/ascensao', [AscensaoController::class, 'index'])->name('ascensao.index');
+Route::get('/ascensoes', [AscensaoController::class, 'index'])->name('ascensoes.index');
 
 //Formulário (etapa 1)
-Route::get('/ascensao/criar-primeiro-passo', [AscensaoController::class, 'criarPrimeiroPasso'])->name('ascensao.criar.primeiro.passo');
+Route::get('/ascensoes/criar-primeiro-passo', [AscensaoController::class, 'criarPrimeiroPasso'])->name('ascensoes.criar.primeiro.passo');
 
-Route::post('/ascensao/criar-primeiro-passo', [AscensaoController::class, 'criarPrimeiroPassoPost'])->name('ascensao.criar.primeiro.passo.post');
+Route::post('/ascensoes/criar-primeiro-passo', [AscensaoController::class, 'criarPrimeiroPassoPost'])->name('ascensoes.criar.primeiro.passo.post');
 
 // Formulário (etapa 2)
-Route::get('/ascensao/criar-segundo-passo', [AscensaoController::class, 'criarSegundoPasso'])->name('ascensao.criar.segundo.passo');
+Route::get('/ascensoes/criar-segundo-passo', [AscensaoController::class, 'criarSegundoPasso'])->name('ascensoes.criar.segundo.passo');
 
-Route::post('/ascensao/criar-segundo-passo', [AscensaoController::class, 'criarSegundoPassoPost'])->name('ascensao.criar.segundo.passo.post');
+Route::post('/ascensoes/criar-segundo-passo', [AscensaoController::class, 'criarSegundoPassoPost'])->name('ascensoes.criar.segundo.passo.post');
 
 //Formulário (etapa 3)
-Route::get('/ascensao/criar-terceiro-passo', [AscensaoController::class, 'criarTerceiroPasso'])->name('ascensao.criar.terceiro.passo');
+Route::get('/ascensoes/criar-terceiro-passo', [AscensaoController::class, 'criarTerceiroPasso'])->name('ascensoes.criar.terceiro.passo');
 
-Route::post('/ascensao/criar-terceiro-passo', [AscensaoController::class, 'criarTerceiroPassoPost'])->name('ascensao.criar.terceiro.passo.post');
+Route::post('/ascensoes/criar-terceiro-passo', [AscensaoController::class, 'criarTerceiroPassoPost'])->name('ascensoes.criar.terceiro.passo.post');
+
+//Cadastrar curso
+Route::get('/ascensoes/cursos/criar', function() {
+    return view('ascensoes.curso');
+})->name('ascensoes.cursos.criar');
+
+Route::post('')->name('ascensoes.cursos.criar.post');
 
 
 require __DIR__.'/auth.php';

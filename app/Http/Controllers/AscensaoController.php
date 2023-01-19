@@ -3,51 +3,57 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ascensao;
+use App\Models\TipoAscensao;
 use Illuminate\Http\Request;
 
 class AscensaoController extends Controller
 {
     public function index()
     {
-        return view('ascensao.index');
+        return view('ascensoes.index');
     }
 
     public function criarPrimeiroPasso(Request $request)
     {
         $ascensao = new Ascensao();
         $ascensao->save();
-
+        
         session(['ascensao' => $ascensao]);
+        
+        $tiposAscensoes = TipoAscensao::get();
 
-        return view('ascensao.criar-primeiro-passo');
+        return view('ascensoes.criar-primeiro-passo', [ 'tiposAscensoes' => $tiposAscensoes]);
     }
 
     public function criarPrimeiroPassoPost(Request $request)
-    {
-        //dd($request->telefone);
-    
+    {   
         $ascensao = session('ascensao');
+        
         $ascensao->telefone = $request->telefone;
-        //$ascensao-> = $request->telefone;
 
-        dd($ascensao);
+        $tipoAscensao = TipoAscensao::where('codigo', $request->tipoAscensao)->first();
+        $ascensao->tipo_ascensao_id = $tipoAscensao->id;
+
+        $ascensao->save();        
     
-        return to_route('ascensao.criar.segundo.passo');
+        return to_route('ascensoes.criar.segundo.passo');
     }
 
     public function criarSegundoPasso(Request $request)
     {
-        return view('ascensao.criar-segundo-passo');
+        return view('ascensoes.criar-segundo-passo');
     }
 
     public function criarSegundoPassoPost(Request $request)
     {
-        return to_route('ascensao.criar.terceiro.passo');
+        $ascensao = session('ascensao');
+        
+        return to_route('ascensoes.criar.terceiro.passo');
     }
 
     public function criarTerceiroPasso(Request $request)
     {
-        return view('ascensao.criar-terceiro-passo');
+        return view('ascensoes.criar-terceiro-passo');
     }
 
     public function criarTerceiroPassoPost(Request $request)

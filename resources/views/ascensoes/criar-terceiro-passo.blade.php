@@ -1,9 +1,9 @@
-<form action="{{ route('ascensao.criar.terceiro.passo.post') }}" method="post">
+<form action="{{ route('ascensoes.criar.terceiro.passo.post') }}" method="post">
     @csrf
     Terceiro passo
 
     <div>
-        <a href="{{ route('ascensao.criar.segundo.passo') }}">
+        <a href="{{ route('ascensoes.criar.segundo.passo') }}">
             <button type="button">Voltar</button>
         </a>
 

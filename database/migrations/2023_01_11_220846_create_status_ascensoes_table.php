@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('status_ascensoes', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 4);
+            $table->string('codigo', 4)->unique();
             $table->string('nome');
         });
     }
