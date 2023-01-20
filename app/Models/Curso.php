@@ -10,4 +10,8 @@ class Curso extends Model
     use HasFactory;
 
     protected $table = 'cursos';
+
+    protected $fillable = ['ascensao_id', 'nome', 'area', 'carga_horaria', 'instituicao', 'data_inicio', 'data_fim'];
+
+    public $timestamps = false;
 }
