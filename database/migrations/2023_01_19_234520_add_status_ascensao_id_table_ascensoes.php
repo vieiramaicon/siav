@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ascensoes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate();
-            $table->string('telefone', 11)->nullable();
-            $table->string('numero_processo', 12)->nullable();
-            $table->timestamps();
+        Schema::table('ascensoes', function(Blueprint $table) {
+            $table->foreignId('status_ascensao_id')->after('intersticio_id')->constrained('status_ascensoes')->cascadeOnUpdate();
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ascensoes');
+        Schema::table('ascensoes', function(Blueprint $table) {
+            $table->dropColumn('status_ascensao_id');
+        });
     }
 };

@@ -5,7 +5,7 @@
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Carga-Horária</th>
+                <th>CH</th>
                 <th>Arquivo</th>
             </tr>
         </thead>
@@ -16,13 +16,13 @@
     </table>
 
     <div>
-        <a href="{{ route('ascensoes.cursos.criar') }}">
+        <a href="{{ route('ascensoes.cursos.criar') }}" style="text-decoration:none">
             <button type="button">Novo Curso</button>
         </a>
     </div>
 
     <div>
-        <a href="{{ route('ascensoes.criar.primeiro.passo') }}">
+        <a href="{{ route('ascensoes.criar.primeiro.passo') }}" style="text-decoration:none">
             <button type="button">Voltar</button>
         </a>
 

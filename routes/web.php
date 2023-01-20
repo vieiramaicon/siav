@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AscensaoController;
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -51,11 +52,9 @@ Route::get('/ascensoes/criar-terceiro-passo', [AscensaoController::class, 'criar
 Route::post('/ascensoes/criar-terceiro-passo', [AscensaoController::class, 'criarTerceiroPassoPost'])->name('ascensoes.criar.terceiro.passo.post');
 
 //Cadastrar curso
-Route::get('/ascensoes/cursos/criar', function() {
-    return view('ascensoes.curso');
-})->name('ascensoes.cursos.criar');
+Route::get('/ascensoes/cursos/criar', [CursoController::class, 'create'])->name('ascensoes.cursos.criar');
 
-Route::post('')->name('ascensoes.cursos.criar.post');
+Route::post('/ascensoes/cursos', [CursoController::class, 'store'])->name('ascensoes.cursos.criar.post');
 
 
 require __DIR__.'/auth.php';
