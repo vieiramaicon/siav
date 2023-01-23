@@ -35,9 +35,9 @@ class AscensaoController extends Controller
 
             $ascensao = Ascensao::create(['user_id' => $user_id, 'intersticio_id' => $intersticio->id, 'status_ascensao_id' => $status->id]);
             $ascensao->save();
-
-            session(['ascensao' => $ascensao]);
         }
+
+        session(['ascensao' => $ascensao]);
         
         return view('ascensoes.criar-primeiro-passo', [ 'tiposAscensoes' => $tiposAscensoes, 'ascensao' => $ascensao]);
     }
