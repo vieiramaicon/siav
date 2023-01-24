@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ascensao;
+use App\Models\Curso;
 use App\Models\Intersticio;
 use App\Models\StatusAscensao;
 use App\Models\TipoAscensao;
@@ -58,7 +59,11 @@ class AscensaoController extends Controller
 
     public function criarSegundoPasso(Request $request)
     {
-        return view('ascensoes.criar-segundo-passo');
+        $ascensao = session('ascensao');
+
+        $cursos = Curso::where('ascensao_id', $ascensao->id)->get();
+
+        return view('ascensoes.criar-segundo-passo', ['cursos' => $cursos]);
     }
 
     public function criarSegundoPassoPost(Request $request)

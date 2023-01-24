@@ -16,8 +16,12 @@ class CursoController extends Controller
         $ascensao = session('ascensao');
 
         $data = $request->collect()->all();
-
+        
         $data['ascensao_id'] = $ascensao->id;
+        
+        $data['arquivo'] = $request->file('arquivo')->get();
+
+        // dd($data);
         
         $curso = Curso::create($data);
 

@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             IntersticioSeeder::class,
             StatusAscensaoSeeder::class,
             TipoAscensao::class,
+            StatusCursoSeeder::class,
         ]);
     }
 }

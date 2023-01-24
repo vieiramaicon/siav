@@ -3,6 +3,7 @@
 use App\Http\Controllers\AscensaoController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Curso;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,6 +56,16 @@ Route::post('/ascensoes/criar-terceiro-passo', [AscensaoController::class, 'cria
 Route::get('/ascensoes/cursos/criar', [CursoController::class, 'create'])->name('ascensoes.cursos.criar');
 
 Route::post('/ascensoes/cursos', [CursoController::class, 'store'])->name('ascensoes.cursos.criar.post');
+
+//Baixar curso
+Route::post('/ascensoes/cursos/downloading', function(Request $request) {
+    $curso = Curso::find($request->curso_id);
+
+    return response($curso->arquivo)
+                ->header('Content-Type', 'application/pdf')
+                ->header('Content-Disposition', 'attachment;filename=' . $curso->nome .'.pdf');
+
+})->name('ascensoes.cursos.downloading.post');
 
 
 require __DIR__.'/auth.php';
