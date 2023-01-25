@@ -28,14 +28,19 @@ class AscensaoController extends Controller
         
         $user_id = Auth::id();
         
-        $ascensao = Ascensao::where('user_id', $user_id)->where('intersticio_id', $intersticio->id)->first();
+        $status_ascensao_id = StatusAscensao::getIdbyCodigo('st01');
         
+        $ascensao = Ascensao::where('user_id', $user_id)->where('intersticio_id', $intersticio->id)->first();
+
         if(!$ascensao)
         {
-            $status = StatusAscensao::where('codigo', 'st01')->first();
-
-            $ascensao = Ascensao::create(['user_id' => $user_id, 'intersticio_id' => $intersticio->id, 'status_ascensao_id' => $status->id]);
+            $ascensao = Ascensao::create(['user_id' => $user_id, 'intersticio_id' => $intersticio->id, 'status_ascensao_id' => $status_ascensao_id]);
             $ascensao->save();
+        }
+
+        if($ascensao->status_ascensao_id != $status_ascensao_id) 
+        {
+            return redirect()->route('ascensoes.index');
         }
 
         session(['ascensao' => $ascensao]);
@@ -80,6 +85,13 @@ class AscensaoController extends Controller
 
     public function criarTerceiroPassoPost(Request $request)
     {
-        return 'Finalizou';
+        $ascensao = session('ascensao');
+
+        $ascensao->status_ascensao_id = StatusAscensao::getIdbyCodigo('st02');
+        $ascensao->save();
+
+        session()->forget('ascensao');
+
+        return redirect()->route('ascensoes.index');
     }
 }

@@ -15,7 +15,7 @@ class CursoController extends Controller
 
     public function store(Request $request) {
         $ascensao = session('ascensao');
-
+        
         $data = $request->collect()->all();
         
         $data['ascensao_id'] = $ascensao->id;
