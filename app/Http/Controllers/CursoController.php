@@ -27,4 +27,5 @@ class CursoController extends Controller
 
         return redirect()->route('ascensoes.criar.segundo.passo');
     }
+    
 }
