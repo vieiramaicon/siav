@@ -58,18 +58,13 @@ Route::get('/ascensoes/cursos/criar', [CursoController::class, 'create'])->name(
 Route::post('/ascensoes/cursos', [CursoController::class, 'store'])->name('ascensoes.cursos.criar.post');
 
 //Baixar curso
-Route::post('/ascensoes/cursos/downloading', function(Request $request) {
-    $curso = Curso::find($request->curso_id);
 
+Route::get('/cursos/{curso}/download', function(Curso $curso) {
+    
     return response($curso->arquivo)
                 ->header('Content-Type', 'application/pdf')
                 ->header('Content-Disposition', 'attachment;filename=' . $curso->nome .'.pdf');
-
-})->name('ascensoes.cursos.downloading.post');
-
-Route::get('/cursos/download/{id}', function(Curso $curso) {
-    dd($curso);
-});
+})->name('cursos.download');
 
 
 require __DIR__.'/auth.php';
