@@ -67,5 +67,9 @@ Route::post('/ascensoes/cursos/downloading', function(Request $request) {
 
 })->name('ascensoes.cursos.downloading.post');
 
+Route::get('/cursos/download/{id}', function(Curso $curso) {
+    dd($curso);
+});
+
 
 require __DIR__.'/auth.php';

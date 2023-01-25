@@ -11,7 +11,7 @@ class Curso extends Model
 
     protected $table = 'cursos';
 
-    protected $fillable = ['ascensao_id', 'nome', 'area', 'carga_horaria', 'instituicao', 'data_inicio', 'data_fim', 'arquivo'];
+    protected $fillable = ['ascensao_id','status_curso_id', 'nome', 'area', 'carga_horaria', 'instituicao', 'data_inicio', 'data_fim', 'arquivo'];
 
     public $timestamps = false;
 }

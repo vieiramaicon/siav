@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('cursos', function(Blueprint $table) {
-            $table->foreignId('status_curso_id')->constrained('status_cursos')->cascadeOnUpdate();
+            $table->foreignId('status_curso_id')->after('ascensao_id')->constrained('status_cursos')->cascadeOnUpdate();
         });
     }
 
@@ -25,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('cursos', function(Blueprint $table) {
+            $table->dropColumn('status_curso_id');
+        });
     }
 };
